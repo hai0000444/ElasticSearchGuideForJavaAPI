@@ -45,9 +45,9 @@ public class ESTest_Search_queryStringQuery {
 //        QueryStringQueryBuilder queryStringQueryBuilder = QueryBuilders.queryStringQuery("age : (\"30\" or \"31\" or \"41\")");
 //  例3. age != "30"
 //        QueryStringQueryBuilder queryStringQueryBuilder = QueryBuilders.queryStringQuery("-age : \"30\"");
-//  例4. age not in ("23","41"), 这里写and和or都可以
-//        QueryStringQueryBuilder queryStringQueryBuilder = QueryBuilders.queryStringQuery("-age : (\"23\" or \"41\")");
-        QueryStringQueryBuilder queryStringQueryBuilder = QueryBuilders.queryStringQuery("-age : (\"23\" and \"41\")");
+//  例4. age not in ("23","41"), 这里写and和or必须大写          AND表示既是23又是41，所以age既是23又是41不存在，会查全量
+        QueryStringQueryBuilder queryStringQueryBuilder = QueryBuilders.queryStringQuery("-age : (\"23\" OR \"41\")");
+//        QueryStringQueryBuilder queryStringQueryBuilder = QueryBuilders.queryStringQuery("-age : (\"23\" AND \"41\")");
 //  例5. 创建查询对象,查询 所有字段中 含有changge 且 不含有hejiu的文档
 //        QueryBuilder qb = QueryBuilders.queryStringQuery("+changge -hejiu");
 //  例6. 创建查询对象,查询 所有字段中 含有changge 或者 不含有hejiu的文档
