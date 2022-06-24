@@ -34,20 +34,14 @@ public class ESTest_Search_queryStringQuery {
 //  Lucene查询语法
 //  例1. age = "30"  ,  这里 \"30\"带不带双引号都不会影响查询，只有一个值不会产生歧义
 //        QueryStringQueryBuilder queryStringQueryBuilder = QueryBuilders.queryStringQuery("age : \"30\"");
-//  例2. age in ("30","31","41")
-        /**
-         * 如果写成 QueryBuilders.queryStringQuery("age : (30 or 31 or 41)");   则会产生歧义，报错
-         * 1。 "30" or "31" or "41"   三个字符串
-         * 2. "30 or 31" or "41"      两个字符串
-         * 3. "30" or "31 or 41"      两个字符串
-         * 所以不同的值必须用双引号包裹
-         */
-//        QueryStringQueryBuilder queryStringQueryBuilder = QueryBuilders.queryStringQuery("age : (\"30\" or \"31\" or \"41\")");
+//  例2. AND和OR必须大写
+        QueryStringQueryBuilder queryStringQueryBuilder = QueryBuilders.queryStringQuery("age : (30 OR 31 OR 41)");
 //  例3. age != "30"
 //        QueryStringQueryBuilder queryStringQueryBuilder = QueryBuilders.queryStringQuery("-age : \"30\"");
-//  例4. age not in ("23","41"), 这里写and和or必须大写          AND表示既是23又是41，所以age既是23又是41不存在，会查全量
-        QueryStringQueryBuilder queryStringQueryBuilder = QueryBuilders.queryStringQuery("-age : (\"23\" OR \"41\")");
+//  例4. age not in ("23","41"),    AND表示既是23又是41，所以age既是23又是41不存在，会查全量
+//        QueryStringQueryBuilder queryStringQueryBuilder = QueryBuilders.queryStringQuery("-age : (\"23\" OR \"41\")");
 //        QueryStringQueryBuilder queryStringQueryBuilder = QueryBuilders.queryStringQuery("-age : (\"23\" AND \"41\")");
+
 //  例5. 创建查询对象,查询 所有字段中 含有changge 且 不含有hejiu的文档
 //        QueryBuilder qb = QueryBuilders.queryStringQuery("+changge -hejiu");
 //  例6. 创建查询对象,查询 所有字段中 含有changge 或者 不含有hejiu的文档
